@@ -99,7 +99,7 @@ N = dict(
     n_labels=f"{len(labels) + len(labels_e):,}", n_labels_conf=f"{len(labels):,}",
     woman=pct(M["female"]["pct"]), woman_lo=pct(f_lo), woman_hi=pct(f_hi), woman_e=pct(ME["female"]["pct"]),
     man=pct(M["male"]["pct"]), man_lo=pct(m_lo), man_hi=pct(m_hi), both=pct(M["both"]["pct"]),
-    fvm=pct(fvm["pct"]), fvm_lo=pct(fvm_lo), fvm_hi=pct(fvm_hi), fvm_p=f"{fvm_p:.2f}", fvm_e=pct(me["female_vs_male"]["pct"]),
+    fvm=pct(fvm["pct"]), fvm_lo=pct(fvm_lo), fvm_hi=pct(fvm_hi), fvm_bound=pct(max(abs(fvm_lo), abs(fvm_hi)), sign=False), fvm_p=f"{fvm_p:.2f}", fvm_e=pct(me["female_vs_male"]["pct"]),
     neg=pct(M["negative"]["pct"]), pos=pct(M["positive"]["pct"]),
     env=pct(T1["ENV"]["pct"]), eco=pct(T1["ECO"]["pct"]), pol=pct(T1["POL"]["pct"]), hum=pct(T1["HUM"]["pct"]),
     gen_e=pct(T1E["GEN"]["pct"]), gen_c=pct(T1["GEN"]["pct"]),
