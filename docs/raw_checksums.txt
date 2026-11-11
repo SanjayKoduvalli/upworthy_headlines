@@ -1,0 +1,12 @@
+49bfd05a2e20817acd0d45855a53a3dc03bfa6cc1b390ae9ba51734727923bab  ./02.2021-create-research.samples.py
+a9827df3d3185f5784284ab0666aeef44f0447d581fc70e8e07f52ce4cfe9720  ./Matias-Munger-Upworthy-Research-Archive-09.2019.pdf
+17a31ce7cb6fda088369a744f0457564f8191f244947396d528c7edaded58c77  ./Upworthy-Research-Archive-Announcement-CODE-MIT-11.02.2019.pdf
+b8266c1fac43d5d70d7c69c0ddb3b214edc5515b904cc1f76610cdb0a0c1da0a  ./google-analytics-data/2013.01.01-2015.04.30-aggregate-country-data.csv
+fa9b7f8431a33aa5646204e20ffe6b5ba09ec6b9af63cab5d74c82589995b262  ./google-analytics-data/2013.01.01-2015.04.30-daily-pageviews.csv
+a1646d5b5d196fc4373f2b85364ffa58c207769a3172f562455eb6dc9af0fa07  ./google-analytics-data/2013.01.01-2015.04.30-daily-users-info.csv
+1505f43d415b59bedc3ff497f5f275c1b1b2c1086224d2ec98e376b839879a93  ./google-analytics-data/README.md
+b2a88288c88f2b67d40413c9bdbebe79a1c0b5d9a9354180549f59f3bfff685f  ./upworthy-archive-datasets/upworthy-archive-confirmatory-packages-03.12.2020.csv
+8368313b060f4015a0c6fb34e6d788163cee29554144aba9390b14922eb9d8ce  ./upworthy-archive-datasets/upworthy-archive-exploratory-packages-03.12.2020.csv
+93832660b831aca16bbe314c60dba4a6815b0a5f9cdded1217671cfbfa5186ea  ./upworthy-archive-datasets/upworthy-archive-holdout-packages-03.12.2020.csv
+ea6a7bf23dc2a8edc3fe7e5eedbba0f9149a1dbd0640e89fdcacc1a156d8de82  ./upworthy-archive-datasets/upworthy-archive-undeployed-packages.01.12.2021.csv
+bb893e56a49591725aea153161f555eb1603e4df3acb3e4d1adccd61bd3575d0  ./upworthy-timestamped-screenshots/README.md

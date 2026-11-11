@@ -1,0 +1,9 @@
+# Raw source data (download from OSF; see README)
+data/raw/
+# Build output (rebuilt from scratch by scripts/build.py)
+build/
+# OS / editor
+.DS_Store
+__pycache__/
+.vscode/
+.ipynb_checkpoints/
