@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Upworthy: Women in Headlines · Sanjay Koduvalli</title>
 <meta name="description" content="Case study: does centering a woman in a headline change clicks? A re-analysis of thousands of randomized headline tests from the Upworthy Research Archive, in Python.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Upworthy: does a woman in the headline change clicks?">
+<meta property="og:description" content="Case study: does centering a woman in a headline change clicks? A re-analysis of thousands of randomized headline tests from the Upworthy Research Archive, in Python.">
+<meta property="og:url" content="https://sanjaykoduvalli.github.io/upworthy_headlines/">
+<meta property="og:image" content="https://sanjaykoduvalli.github.io/assets/upworthy-headlines.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
@@ -19,7 +25,7 @@
   <nav class="wrap" aria-label="Main">
     <a class="brand" href="https://sanjaykoduvalli.github.io/">Sanjay Koduvalli</a>
     <div class="nav-links">
-      <a href="https://sanjaykoduvalli.github.io/#projects">Projects</a>
+      <a href="https://sanjaykoduvalli.github.io/#projects">Personal Projects</a>
       <a href="https://sanjaykoduvalli.github.io/#skills">Skills</a>
     </div>
   </nav>
@@ -36,11 +42,13 @@
         <a class="btn" href="https://github.com/SanjayKoduvalli/upworthy_headlines">Code on GitHub</a>
       </div>
       <div class="chips" aria-label="Skills shown">
-        <span class="chip">Python automation</span>
-        <span class="chip">Data cleaning &amp; validation</span>
         <span class="chip">A/B testing</span>
         <span class="chip">Regression modeling</span>
         <span class="chip">Statistical analysis</span>
+        <span class="chip">Python automation</span>
+        <span class="chip">Data cleaning &amp; validation</span>
+        <span class="chip">Text classification</span>
+        <span class="chip">Data visualization</span>
       </div>
     </div>
   </section>
@@ -153,18 +161,21 @@
 <section id="aa" class="sub">
         <h3>3.3 Testing the test: an A/A check</h3>
         <p>Before measuring any headline effect, I checked the measuring stick. Upworthy sometimes ran "tests" where every version of the tile was identical. Any difference in clicks there is pure chance, so a sound test should call it significant only 5% of the time. A standard test called ${aa_fp} of ${n_aa} identical-version tests significant.</p>
+        <details class="more"><summary>Show the chart</summary>
         <figure>
           ${f2}
           <figcaption>Left: if the test were sound, p-values from identical-version tests would spread evenly, about 10% per bar; instead ${aa_first} fall below 0.1. Right: false alarms before and after calibration (calibration estimated on one half of the tests, checked on the other). Confirmatory data. <a href="${gh}pipeline/05_report/figures.py">Code for this chart</a> · <a href="${gh}pipeline/04_analysis/aa_check.py">analysis code</a></figcaption>
           <details><summary>Show the numbers</summary>${f2_table}</details>
         </figure>
+        </details>
         <p><strong>Why:</strong> the test assumes every impression is an independent coin flip. Here, click rates of identical tiles vary about ${phi_aa} times as much as coin flips would, likely because the same readers see a tile more than once and shared links send bursts of similar readers. This is <em>overdispersion</em>. The fix is a <strong>quasi-binomial</strong> correction: keep every estimate, but widen the uncertainty by the measured noise factor. It brings false alarms down to about ${aa_after}.</p>
         <p>This check shaped every result in section 2. Without it, many of the "effects" in this archive would be noise.</p>
       </section>
 
 <section id="labels" class="sub">
         <h3>3.4 Labeling ${n_labels} headlines with AI</h3>
-        <p>Each headline needed three labels: who it centers (a woman, a man, both, or no gendered person), its tone (positive, neutral, negative) and its topics (12 yes/no tags, since many headlines span two). The standard Python text packages couldn't be installed in the environment I worked in, so the labels came from an AI classifier (Claude) given the same fixed written instructions for every headline.</p>
+        <p>Each headline needed three labels: who it centers (a woman, a man, both, or no gendered person), its tone (positive, neutral, negative) and its topics (12 yes/no tags, since many headlines span two). The labels came from an AI classifier (Claude) given the same fixed written instructions for every headline.</p>
+        <details class="more"><summary>How I checked the AI's labels, and a labeling app you can try</summary>
         <p>To check the classifier, I needed my own labels to compare against, made without seeing the AI's. Labeling hundreds of judgment calls in a spreadsheet invites two kinds of error: fatigue, and <em>anchoring</em> on an answer you can already see. So I built a small flashcard app for it instead.</p>
         <div class="ld-points">
           <div class="card decision"><strong>Blind by design</strong>The AI's answer stays hidden until all three questions are answered, so it can't steer the judgment. Agreement then measures the AI against an independent reader.</div>
@@ -175,21 +186,26 @@
         <div class="ld" id="labeler-demo" aria-label="Interactive headline labeler"><p class="ld-hint">The interactive labeler needs JavaScript.</p></div>
         <script type="application/json" id="labeler-demo-data">${demo_data}</script>
         <script src="assets/labeler-demo.js" defer></script>
+        </details>
         <p><strong>Result:</strong> agreement between the AI and my blind labels was gender ${v_gender} (Cohen's kappa ${v_gender_k}), tone ${v_sent} (kappa ${v_sent_k}), and my topic among its tags ${v_topic} of the time. Most tone disagreements were about where "neutral" ends. Having the app also made the next decision easy: seeing two topics that fit the same headline again and again, I switched topics from a single choice to yes/no tags. The instructions were then frozen before the confirmatory headlines were labeled.</p>
       </section>
 
 <section id="model" class="sub">
         <h3>3.5 The model</h3>
         <p>A logistic regression of clicks out of impressions for every headline version, with <strong>one intercept per test</strong> (test fixed effects), so each headline is compared only with other headlines for the same story. Significance uses the quasi-binomial correction with the noise factor estimated from the model itself (${phi_model}), which widens every interval by about ${sqrt_phi} times. A second check uses a placebo threshold: fake labels assigned at random to the identical-version tests 1,000 times. A result counts as solid only if it passes both.</p>
+        <details class="more"><summary>Show the code and how the fit was checked</summary>
         <div class="code" role="region" aria-label="Python excerpt" tabindex="0"># Profile out one intercept per test, then Newton steps on the effects:
 # curvature = X'WX minus, per test, (X_t'w_t)(w_t'X_t) / sum(w_t)
 info = (X * w[:, None]).T @ X - (wx / wsum[:, None]).T @ wx
 beta = beta + np.linalg.solve(info, X.T @ (clicks - impressions * mu))</div>
-        <p>The fit is written in NumPy and SciPy (<a href="${gh}pipeline/04_analysis/felogit.py">felogit.py</a>) because the standard modeling package couldn't be installed where I worked; it matches a brute-force fit with one column per test, and a check against statsmodels is included in the repository.</p>
+        <p>The fit is written in NumPy and SciPy (<a href="${gh}pipeline/04_analysis/felogit.py">felogit.py</a>); it matches a brute-force fit with one column per test, and a check against statsmodels is included in the repository.</p>
+        </details>
       </section>
 
 <section id="valid" class="sub">
         <h3>3.6 Validation</h3>
+        <p>Five safeguards back the results, from re-computing them in separate code to keeping the confirmatory data locked until the methods were approved.</p>
+        <details class="more"><summary>Show the five checks</summary>
         <ul>
           <li><strong>Independent re-computation:</strong> the A/A results and noise factor were recomputed from the raw files in separate, standard-library code: every p-value matches.</li>
           <li><strong>A second method:</strong> the woman effect and the environment framing effect were re-estimated with Mantel–Haenszel odds ratios, and agree closely.</li>
@@ -197,6 +213,7 @@ beta = beta + np.linalg.solve(info, X.T @ (clicks - impressions * mu))</div>
           <li><strong>Testing the tests:</strong> cleaning checks were run against deliberately broken copies to prove they fail when they should.</li>
           <li><strong>A two-stage lock:</strong> the confirmatory data was opened only after the definitions were approved, enforced in code and tested.</li>
         </ul>
+        </details>
         <p>One command, <code>python3 scripts/build.py</code>, rebuilds the cleaned data from the raw files and runs every check. Every number on this page is read from the result files by the script that builds it: <a href="docs/results/provenance.md">where each number comes from</a>.</p>
       </section>
 
