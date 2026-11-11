@@ -200,6 +200,8 @@ Neither the AI workspace nor the shell on Sanjay's Mac can reach PyPI, GitHub fi
 2. **Exploratory:** 14,465 distinct reader-facing texts (from 22,666 packages), 60 per call → 242 calls.
 3. **Confirmatory:** only after `LOCK.md` records Sanjay's approval (L4); the data file isn't even published before that. About 4 times the exploratory volume.
 
+**Locked 2026-11-10 (R15, R16).** Sanjay approved the classifier lock after the check: default model; sentiment keeps "label the note it ends on" (he had labeled the setup on 6 such headlines and chose the codebook rule). `LOCK.md` stage 1 freezes the codebook, the prompt (by SHA-256) and the unit, and opens only the confirmatory headline text, through `load_text_for_classifier`, which removes every outcome column. Confirmatory: 58,613 units, 977 calls. Clicks in confirmatory stay locked until stage 2 (the analysis definitions).
+
 **Unit.** One distinct reader-facing text: cleaned headline plus the excerpt shown under it. Stock (boilerplate) excerpts are left out of the text, so packages that differ only by a stock excerpt share one label. Each unit has a stable key that joins labels back to packages (`build/03_features/units.csv.gz`).
 
 **Checks built into the page:** every answer must have one entry per headline, in order, using only the allowed codes; otherwise the call is skipped (not retried automatically) and a later Run tries it again. A run stops after three failed calls in a row or any usage-limit error.
@@ -222,6 +224,23 @@ Neither the AI workspace nor the shell on Sanjay's Mac can reach PyPI, GitHub fi
 | 2026-11-10 | features | **Blind agreement, AI draft v1 vs. Sanjay, first 100 of the 200-headline sample** (`docs/validation/human_labels.csv`, computed from the Labeler export via `scripts/sync_labels.py`) | ✅ gender 95% (κ 0.93); sentiment 72% (κ 0.58); topic 78% (κ 0.76) | Sentiment differences are mostly neutral vs. not (24 of 28); topic differences mostly headlines that fit two topics. Led to R12–R14 (§5.3) |
 | 2026-11-10 | features | Classifier page tested in a headless browser with a fake Claude: every call saved, validation table scored, resume skips finished calls, no sideways scroll at phone width | ✅ pass | Real agreement numbers come from Sanjay's step-1 run |
 
+| 2026-11-10 | features | **Classifier (codebook v2) vs. Sanjay's 100 blind labels**, both model tiers (`docs/validation/classifier_validation.md`) | ✅ default chosen: gender 96% (κ 0.94); sentiment 71% (κ 0.56); Sanjay's topic among the tags 80%; 1.5 tags per headline | Quick was slightly worse on every measure. 6 of the 8 positive-vs-negative flips are "bad setup, good ending" headlines, where the classifier followed the codebook's "label the note it ends on" rule and Sanjay labeled the setup: a definition question for Sanjay, not a classifier error |
+| 2026-11-10 | features | Exploratory run, default model: 242 of 242 calls, 14,465 units; every answer passed the page's checks; imported by `scripts/import_classifier_labels.py` (keys match the inputs in order, one label per unit, all 22,666 packages join to a label) | ✅ pass | Shares: gender none 52%, male 23%, female 20%, both 5%; sentiment positive 44%, negative 31%, neutral 26%; most common tags GEN 24%, ENT 21%, HUM 16%; 7% no topic |
+
+| 2026-11-10 | analysis | **A/A check AA1–AA5** (`pipeline/04_analysis/aa_check.py`); independent re-computation from the raw file (`scripts/checks/verify_aa.py`); simulation of the test on fake A/A data | ❌ check fails: 26.1% false positives vs. 5% expected. ✅ code verified: 326 of 326 p-values match independently; simulated null 4.6%, simulated +50% effect detected 56% | Real overdispersion (φ ≈ 2), not a bug; calibration AA6 proposed (§8.1) |
+
+| 2026-11-10 | analysis | **AA6 calibration**: φ and the empirical threshold re-derived independently from the raw file | ✅ φ 1.9636, threshold 5.3635 match; held-out false positives 5.5% / 8.6% | Close to 5% but somewhat over; dual reporting (a)+(b) |
+| 2026-11-10 | features | Confirmatory labels imported: 977 of 977 calls, 58,613 units, keys match the inputs in order | ✅ pass | Confirmatory outcomes still locked (stage 2) |
+
+| 2026-11-10 | analysis | **Main model M1/M2** (`felogit.py`, `main_effects.py`) validated: brute-force dummy fit, Mantel–Haenszel, planted effect, placebo (`verify_models.py`) | ✅ all pass | M1-φ cross-check 3.83 vs. expected ~2: flagged for Sanjay (§8.2) |
+
+| 2026-11-10 | analysis | **Topic effects T1/T2** (`topic_effects.py`): Mantel–Haenszel check of the largest T1 effect; T2 with year instead of month fixed effects | ✅ MH −16.3% vs. model −17.0%; T2 direction stable for 10 of 12 topics, significance changes for politics and science | |
+
+| 2026-11-11 | lock | **Bug found by the AI before the stage-2 run:** `require_lock` accepted "Approved by Sanjay:" anywhere in LOCK.md, so the stage-1 sentence describing the future line opened stage 2 from 21:38 to 00:11. Audit of every `load_table` call in that window (code and session log): only exploratory packages/tests and confirmatory headline text/labels were read; no confirmatory outcome | ✅ no confirmatory outcome read; fixed (line must start with "Approved by Sanjay: YYYY-MM-DD"); regression test `test_lock__only_a_dated_line_opens_stage_2` | 17 tests pass |
+| 2026-11-11 | analysis | Confirmatory run; independent checks (`UPWORTHY_SPLIT=confirmatory`) | ✅ all pass after a checker fix | The independent A/A checker didn't strip zero-width characters, so one test whose excerpts differ only by an invisible character looked non-A/A to it; checker fixed, frozen analysis code unchanged |
+
+| 2026-11-11 | report | Case-study page rendered in a headless browser at 1280 px and 390 px: no sideways scroll, 72 hover titles on chart marks, every placeholder filled; notebook executed end to end and reproduces the page's numbers | ✅ pass | Fixed after looking: two legend overlaps, a target label over a bar, "+0%" ticks, two coinciding dots in the framing chart |
+
 ---
 
 ## 7. AI log
@@ -235,3 +254,130 @@ Neither the AI workspace nor the shell on Sanjay's Mac can reach PyPI, GitHub fi
 | 2026-11-04 | Steps 4–5 | Proposed load rules L1–L5 and cleaning rules S1–S12 with counts; built load, cleaning, 15 tests, an independent check, a generated cleaning log and the confirmatory lock; mutation-tested | Chose to sum duplicate versions for headline effects but keep them separate for the randomization check; chose code enforcement of the confirmatory lock |
 | 2026-11-09–10 | Hand labels | Built the gamified Labeler (blind; AI answer shown only after each answer), arrow-key navigation, sync script; computed agreement on the 100 labels | Labeled 100 headlines and judged it enough; accepted gender and sentiment; changed topics to multi-tag dummies (R12); merged LGBTQ+ into gender equality (R13) |
 | 2026-11-10 | Classifier | Proposed Claude with a fixed prompt as the production classifier, since the packages can't be installed (R14); wrote codebook v2, the input builder and the Classifier page; flagged moderate sentiment agreement and that the multi-tag method needs its own check | Asked to classify every headline, then move on to the analysis |
+
+
+---
+
+## 8. Analysis (exploratory first; confirmatory only after LOCK.md stage 2)
+
+### 8.1 A/A check: approved by Sanjay 2026-11-10 21:49 (AA1–AA5); run the same day
+**Question:** when readers saw identical tiles, how often does our test call a difference "significant"? If our method is sound, about 5% of the time at the 5% level. More than that means our later A/B results would overstate real effects.
+**Data:** the 326 A/A tests in exploratory that are `usable_causal` (336 A/A tests minus 10 in the problem window or failing the randomization check). Arms = the individual packages (S5: identical versions are separate rows for checks like this one); 2–9 arms per test, most 4–6, about 3,300 impressions and 50 clicks per arm.
+
+| # | Calculation | Formula and grain | Pass rule |
+|---|---|---|---|
+| AA1 | Per-test p-value | Chi-square test of homogeneity on the arms × (clicked, didn't click) table; df = arms − 1. One p-value per test | Flag any test with an expected click count below 5 in an arm (counted, kept) |
+| AA2 | False-positive rate | Share of the 326 tests with p < 0.05, with a 95% Wilson interval | The interval includes 5% |
+| AA3 | Shape of the p-values | Share of p-values in each tenth (0–0.1, …, 0.9–1); a Kolmogorov–Smirnov test against uniform | Roughly 10% per tenth; KS p ≥ 0.05 |
+| AA4 | Sensitivity | AA2 on all 336 A/A tests, including the 10 excluded ones | Reported, not a pass rule |
+| AA5 | *(optional, descriptive)* Upworthy's own dashboard in A/A tests | Share of A/A tests where some arm's editor-facing `significance` score reached 95, and where editors picked a `winner` | Reported only; that score isn't a p-value (NOTES §1), so this is "what editors saw", not a statistical result |
+
+**Validation:** an independent standard-library re-computation of AA1–AA2 (own chi-square code, as in `stats_stdlib.py`); a simulation check that the code finds about 5% on fake A/A tests built with identical click rates, and close to 100% when one arm's rate is raised by 50% (test the tests).
+
+**Results (exploratory; `docs/results/aa_check.md`):** the check **fails**. 85 of 326 identical-tile tests come out "significant" at the 5% level: **26.1%** (95% interval 21.6–31.1%), about five times the 5% a sound test should give. The p-values pile up near zero (34% below 0.1, KS p < 0.001). Including the 10 excluded tests changes nothing (25.9%). Upworthy's own editor dashboard: some version scored 95+ in 97.9% of these identical tests, and editors picked a "winner" in 43.9%.
+
+**Is it our code?** No. (1) The independent standard-library re-computation from the raw file matches all 326 p-values (`scripts/checks/verify_aa.py`). (2) On simulated A/A tests built with the real arm sizes and identical click rates, the same code finds 4.6% significant; with one arm 50% better it finds 56%.
+
+**What it means:** click rates of identical tiles vary about twice as much as the simple coin-flip (binomial) model assumes. On average the chi-square statistic is 2.0 times its degrees of freedom (median 1.4; pooled 1.96). This is called *overdispersion*. Likely reasons, which the data can't separate: impressions aren't independent (the same readers see a tile repeatedly; traffic arrives in bursts from social shares), so each arm's click rate is noisier than its impression count suggests.
+**Ruled out (quick diagnostics, exploratory):** the unseen lede differing (28% vs. 26% false positives); arms created at different times (94% within an hour); arm order (each arm's relative click rate 0.99–1.01 for the first six); uneven impressions (correlation with click rate 0.04); test size. `share_text` (social sharing text, not on the tile) differs in 315 of 326 tests, so it can't be tested.
+**Consequence:** a naive A/B test on this archive would overstate how often headline changes matter. Any test we use for the gender analysis must be calibrated to these A/A tests first. Calibration AA6 below (approved).
+
+**AA6, calibrate the test (approved by Sanjay 2026-11-10 23:33, after a walkthrough of quasi-binomial):**
+- (a) *Recommended:* inflate the variance by the dispersion factor φ estimated from the A/A tests (pooled chi-square ÷ degrees of freedom = 1.96), the standard "quasi-binomial" correction, used in every later test and regression. Check: split the A/A tests in half at random, estimate φ on one half and measure the false-positive rate on the other, both ways. A preview gave 6.1% and 8.0%: close to 5% but a little over, because a few tests vary a lot more than the rest.
+- (b) *Robustness:* an empirical threshold, the 95th percentile of the A/A tests' chi-square ÷ degrees of freedom, which gives exactly 5% on A/A by construction. Reported alongside (a).
+
+**AA6 results** (`pipeline/04_analysis/aa_calibrate.py` → `build/04_analysis/calibration.json`, `docs/results/aa_check.md`): φ = **1.96** (uncertainty × 1.40). Split-half check: 5.5% and 8.6% false positives on held-out halves (φ 2.08 and 1.84 from the other half); 6.7% on all A/A tests. Empirical threshold (b): chi-square ÷ df > **5.36**. Independently re-derived (`verify_aa.py`: φ and threshold match). **Conclusion:** the correction brings false positives from 26% to roughly 5–9%; still somewhat above 5%, so findings count as robust only if they hold under both (a) and (b).
+
+**How quasi-binomial works here (for the write-up):** each impression is treated as a coin flip (binomial), but A/A tests show identical tiles' click rates vary about twice as much as coin flips would, because impressions aren't independent (repeat viewers, bursts of shared traffic). Quasi-binomial keeps every estimate unchanged and multiplies the variance by φ, so standard errors grow by √φ; for chi-square tests the statistic is divided by φ. Example: an A/A test with chi-square 10 on 4 df has p = 0.04 uncorrected (a false alarm) but 10 ÷ 1.96 = 5.1, p = 0.28, corrected. φ is measured on A/A tests because there the true difference is zero, so all variation is noise. Limits: one φ for every test, while a few tests are much noisier; hence check (b). Heavier alternatives (beta-binomial, mixed models) are the fallback if (a) and (b) disagree.
+
+### 8.2 Main analysis, headline effects within tests: approved by Sanjay 2026-11-10 23:42; run on exploratory the same night
+**Questions:** H1, does centering a woman in a headline change its click rate compared with otherwise-competing headlines for the same story? H3, does sentiment? H2, does the gender effect differ by topic?
+**Why within tests:** inside one test, the same story was shown to randomly split readers, so differences between versions are causal (rule: causal vs. descriptive). Topic belongs to the story, so it rarely varies inside a test: the design can test whether the gender effect *differs* by topic (H2), not whether some topics get more clicks (that is the descriptive, across-test analysis, later).
+**Data (exploratory):** the 2,046 usable tests where the headline varies (1,623 headline only, 232 headline + image, 191 headline + excerpt), 9,575 variants (S5: identical versions summed). Gender varies in 915 tests (424 contain a female-centered version and a different one); sentiment varies in 1,190.
+
+| # | Calculation | Detail |
+|---|---|---|
+| M1 | Logistic regression (binomial GLM) with **test fixed effects** | One row per variant; outcome clicks out of impressions; predictors gender (female, male, both; reference none), sentiment (positive, negative; reference neutral); one intercept per test, so versions are only compared within their test. Tests where nothing labeled varies drop out automatically |
+| M1-H1 | The answer to H1 | Female vs. none, and female vs. male, as a relative change in click rate with a 95% interval (at ~1.5% click rates the odds ratio ≈ the rate ratio) |
+| M1-a | Significance, method (a) | Quasi-binomial: variance × φ = 1.96 from the A/A tests |
+| M1-b | Significance, method (b) | Placebo version of the A/A threshold: in the 326 A/A tests, give the arms fake gender and sentiment labels at random (1,000 times), fit M1 each time, and use the 97.5th percentile of the fake effects' |z| as the critical value. (The chi-square ÷ df threshold applies to whole-test tests, so for a regression the placebo is its equivalent) |
+| M1-φ | Cross-check | φ estimated from M1's own residuals (Pearson chi-square ÷ residual df); expected near 2 |
+| M2 | H2, gender × topic | M1 plus female × topic-tag interactions (12) and topic main effects. Holm correction across the 12; topics with fewer than 30 informative tests reported as "too few to say" |
+| S1 | Sensitivity: headline-only tests | M1 on the 1,623 tests where nothing else varies (images or excerpts can't confound) |
+| S2 | Sensitivity: label uncertainty | M1 with "both" merged into "female"; with "neutral" sentiment dropped |
+
+**Validation:** (1) an independent estimate of H1 with a different method: stratified Mantel–Haenszel odds ratio of female vs. none within tests, standard library only; (2) planted-effect simulation: copy the data, give female-centered versions 10% more clicks by resampling, and check M1 recovers about +10%; (3) M1 on the A/A tests with fake labels shows nothing (part of M1-b).
+
+**Tooling (decided 23:48, R19: option B):** the standard Python package for this (statsmodels) can't be installed here (PyPI is blocked, §5.2). Options: (A) Sanjay allows pypi.org and files.pythonhosted.org in claude.ai Settings › Capabilities, and we use statsmodels (established tool, R3); (B) the AI writes the fixed-effects logistic fit with scipy (profile the per-test intercepts, Newton steps on the few effects), validated against statsmodels run once on Sanjay's Mac.
+
+**Tooling as built (R19):** `pipeline/04_analysis/felogit.py`, a fixed-effects logistic fit with numpy/scipy (per-test intercepts profiled out; Newton steps on the effects). Checked against a brute-force fit with one dummy column per test (largest coefficient difference 1.4e-06 on 150 tests; 1e-08 on simulated data with known effects). Reference check with statsmodels for Sanjay to run on his Mac: `scripts/checks/statsmodels_check.py`.
+
+**Validation (`scripts/checks/verify_models.py`):** ✅ Mantel–Haenszel female vs. none +13.5% (M1, adjusted for sentiment: +12.4%); ✅ planted +10% recovered as +10.4% on average (8.3 to 12.1 over 20 runs); ✅ brute-force fit agrees. Placebo (M1-b): 1,000 fake-label fits on the A/A tests; critical |z| 3.19–3.53 (method (a) implies 2.75).
+
+**Results (exploratory; `docs/results/main_effects.md`):**
+- **Any person in the headline lifts clicks:** a woman +12.4% (95% interval 9.8 to 15.0), a man +13.2%, both +20.7%, all vs. headlines with no gendered person. Robust under (a), (b) and (c), headline-only tests and label variants.
+- **H1, woman vs. man: no difference.** −0.7% (−3.6 to +2.3), p = 0.63. Centering a woman rather than a man neither helped nor hurt clicks.
+- **H3, sentiment:** negative +4.7% vs. neutral (robust); positive −2.2% (significant under (a) and (b), not under (c), p = 0.07).
+- **H2, gender × topic:** the woman effect is the same across topics except possibly education (+25.0% vs. about +11% elsewhere; passes Holm under (a), p = 0.001, but not under (c), p = 0.023). Environment: too few tests (25).
+
+**⚠️ M1-φ cross-check did not land near 2:** the model's own dispersion is **3.83**. A/A tests contain only noise; real A/B tests also contain genuine headline-to-headline differences that our three labels don't capture, and those add variance. For claims about headlines *in general* (a woman-centered headline vs. a typical other one), that extra variation is real uncertainty, so (c) is the cautious choice. **Decision for Sanjay:** keep (a) as the main method as approved, or switch to (c) (φ from the model), with (a) and (b) reported alongside. Results that change: positive sentiment and the education interaction lose significance under (c); everything else is unchanged.
+
+**Decision (R20, 2026-11-10 23:55):** Sanjay chose (c), φ estimated from the model itself (3.83), as the **main method** for every headline-effect result; (a) and (b) are reported alongside. A result is called robust only if it holds under (c) and (b). Under this rule: woman, man, both and negative tone are robust; positive tone (p = 0.07) and the education interaction (p = 0.023, Holm threshold 0.0045) are not.
+
+### 8.3 Which topics get more clicks: approved by Sanjay 2026-11-10 23:59 (R21); run on exploratory
+Sanjay asked whether some topics outperform others. Two different questions, answered two ways:
+
+| # | Question | Design | Causal? |
+|---|---|---|---|
+| T1 | Does **framing** a story's headline around a topic get more clicks than other headlines for the same story? | M1 plus all 12 topic tags (0/1) in the within-test model; each tag's effect = headlines carrying it vs. versions of the same story that don't. Tags vary within tests often (123 tests for education to 392 for human interest). Holm across the 12; φ from the model (R20) | Yes (random split within tests) |
+| T2 | Do stories **about** some topics get more clicks than stories about others? | One row per usable test (3,805): the test's total clicks out of impressions; topic tags = tags on the majority of its versions; logistic regression with one term per topic plus month fixed effects (click rates drifted over time); quasi-binomial φ from the model; Holm across 12 | No, descriptive: topics differ in promotion, traffic sources, timing and story quality |
+
+Reported as % change in click rate vs. headlines/stories without that tag. Validation: Mantel–Haenszel cross-check for the largest T1 effect; T2 re-run with year instead of month fixed effects.
+
+**Results (exploratory; `docs/results/topic_effects.md`):**
+- **T1, framing (causal):** for the same story, a headline framed around **gender equality & LGBTQ+ gets +6.4% more clicks** (Holm-significant); framings around **environment (−17.0%), politics (−11.4%) and economy (−8.3%) get fewer** (all Holm-significant). Health −5.7% (p = 0.008, misses the Holm bar). Mantel–Haenszel check for environment: −16.3% vs. the model's −17.0%. Model φ = 3.79, close to M1's.
+- **T2, story topic (descriptive):** stories about gender equality (+21%), entertainment (+15%), race/religion (+13%) and family (+12%) drew higher click rates; environment (−26%), economy (−21%), politics (−14%) and science (−12%) lower. Gender equality, entertainment, race, family, economy and environment hold with year instead of month fixed effects; politics and science don't. φ = 76.6: whole stories differ in click rate far more than coin flips, as expected for story-level comparisons; quasi-binomial accounts for it.
+- **The two agree in direction:** gender-equality framing wins and environment/politics/economy framing loses both within stories (causal) and across stories (descriptive). The within-story result is the one that supports a recommendation to editors.
+
+### 8.4 Confirmatory run (stage-2 lock approved by Sanjay 2026-11-11 00:11, R22): the results of record
+Run once with the frozen code (`LOCK.md` lists its SHA-256 fingerprints), `UPWORTHY_SPLIT=confirmatory`. Outputs: `docs/results/confirmatory/`; exploratory outputs moved to `docs/results/exploratory/` (re-run after the move: identical numbers). Confirmatory is about 4–5× larger: 9,814 usable headline tests, 45,961 headline versions, 1,386 usable A/A tests.
+
+| Result | Exploratory | **Confirmatory** | Replicates? |
+|---|---|---|---|
+| A/A false positives, uncorrected | 26.1% | **25.9%** | ✅ |
+| A/A noise factor φ | 1.96 | **1.92** | ✅ |
+| False positives after correction (held-out halves) | 5.5% / 8.6% | **6.8% / 6.3%** | ✅ |
+| Upworthy dashboard: identical tests with a 95+ score | 97.9% | **97.0%** | ✅ |
+| Woman-centered vs. no gendered person | +12.4% | **+8.9%** (7.2 to 10.6) | ✅ |
+| Man-centered vs. none | +13.2% | **+7.4%** (6.0 to 8.8) | ✅ |
+| Both vs. none | +20.7% | **+21.5%** (19.0 to 24.1) | ✅ |
+| **H1: woman vs. man** | −0.7% (n.s.) | **+1.4%** (−0.5 to +3.3), p = 0.16 | ✅ no significant difference; any difference is at most about 3% |
+| Negative vs. neutral | +4.7% | **+3.1%** (1.9 to 4.3) | ✅ |
+| Positive vs. neutral | −2.2% (not robust) | **−1.6%** (−2.6 to −0.5), p = 0.005, passes (b) | ✅ now robust |
+| H2: woman effect differs by topic | education only, not robust | **none robust** (science passes Holm under (a) only) | ✅ "same across topics"; education did not replicate |
+| T1 framing: environment / economy / politics | −17.0% / −8.3% / −11.4% | **−16.2% / −9.6% / −7.6%** | ✅ |
+| T1 framing: gender equality & LGBTQ+ | +6.4% | **−0.1%** | ❌ did not replicate |
+| T1 framing: human interest | −0.7% | **−2.5%** (Holm-significant) | new |
+| T2 story topic (descriptive) | gender equality, entertainment, race, family high; environment, economy, politics, science low | **same pattern** | ✅ |
+
+**Validation on confirmatory:** ✅ independent A/A re-computation matches all 1,386 p-values, φ and the threshold; ✅ Mantel–Haenszel woman vs. none +9.4% (model +8.9%); ✅ planted +10% recovered +10.1%; ✅ brute-force fit agrees (6e-07); ✅ MH for environment framing −15.3% (model −16.2%).
+**Notes:** AA4 counts 2 one-arm "A/A tests" (single version, so not real tests) as not significant; with them removed it is 365 of 1,484 = 24.6%, unchanged. The statsmodels reference check is run on exploratory only: confirmatory's 9,814 test dummies would need about 3.6 GB of memory as a dense matrix, and the implementation itself is what the check verifies.
+
+**What this means for the write-up:** the confirmatory results are the findings. The exploratory gender-equality framing boost (+6.4%) is the classic example of why a held-out split matters: it looked significant after correction for 12 topics and vanished on fresh data.
+
+---
+
+## 9. Case study (R23, built 2026-11-11)
+
+**What's in it:** `index.html` (the case-study page, generated) with four Python-made charts inlined as SVG, a hover tooltip on every mark and a data table under each chart; `notebooks/walkthrough.ipynb`, a companion notebook that reruns the core analysis on confirmatory (A/A check → calibration → main model → two checks).
+**How it's built (no hand-typed numbers, R24):** `pipeline/05_report/figures.py` (matplotlib → `assets/figures/*.svg`, tooltips) → `pipeline/05_report/build_case_study.py` fills `case_study_template.html` from the result files and refuses to write the page if a placeholder is left unfilled → `pipeline/05_report/make_notebook.py` writes and executes the notebook (Jupyter isn't installed here, so the script runs each cell and stores its output). Page styles: the shared `assets/site.css` plus `assets/case-study.css`.
+**Chart colors:** purple #4B3AA8 (causal/confirmatory) and orange #C2671B (descriptive), validated with the dataviz palette checker against white (all checks pass); gray = not significant, always labeled and in the tables.
+**Structure (Sanjay's edit, R26):** 1 The question → 2 What we found (2.1 key findings & actions: people beat abstractions, framing costs, A/B tests need calibrating, gender last; 2.2 women vs. men; 2.3 topic framing) → 3 How the analysis was done (data & design, cleaning, the A/A check, labeling, model, validation, limitations, AI use).
+
+**Corrections made while building:**
+- **The dashboard "significance" hook was dropped.** The archive paper (Matias et al. 2021, Table 1) says the field is "NOT an estimate of statistical significance": a custom comparison with earlier tests whose meaning changed over time, with no documented threshold. The 97% "scored 95+" figure therefore says nothing about false positives and is not used on the page (AA5 stays in the results files, labeled descriptive). The paper also confirms Upworthy tested every article it published from Jan 2013 to Apr 2015 (32,487 experiments) and that the data came via Good, Inc.
+- **Test counts on the page are the ones the model used:** one confirmatory test had zero clicks and drops out of the fit (9,813 tests / 45,957 versions used, of 9,814 / 45,961).
+- **The gender × topic sentence uses the main method:** under the A/A φ, science passes Holm; under the model's φ (R20) no topic does, so the page says no topic differed.
+- **An unsourced claim about Upworthy's audience** was replaced with a neutral limitation.
+**Interactive labeler (R27):** §3.4 embeds `assets/labeler-demo.js`, a browser-only copy of the Headline Labeler: the 100 validation headlines (shuffled per visit), blind three-step questions, then the reader's answers next to the classifier's (default model) and Sanjay's blind labels, with a running agreement score. Data: `docs/validation/classifier_validation_items.json`, written by `scripts/import_classifier_labels.py`. The median labeling time on the page (28 seconds) is computed from `human_labels.csv`. Tested in a headless browser: click and keyboard paths, reveal, next card, phone width.
+

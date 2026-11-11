@@ -1,0 +1,168 @@
+/* =====================================================================
+   Portfolio site styles (home page + every project's case-study page).
+   Copied unchanged into each project repo as assets/site.css, so each repo stands alone.
+   Palette matches the project dashboards: muted purple on a lavender ground, always light.
+   ===================================================================== */
+:root {
+  --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --bg: #F7F6FB;          /* page ground */
+  --surface: #FFFFFF;     /* cards */
+  --surface-2: #FBFAFD;   /* table header, placeholders */
+  --line: #E4E1EE;
+  --line-2: #EEEBF5;
+  --ink: #1E1B2E;         /* headings */
+  --text: #2E2A40;        /* body */
+  --muted: #4A4560;       /* secondary text, 7.9:1 on white */
+  --subtle: #6B6580;      /* labels, 5.4:1 on white */
+  --faint: #8A849C;       /* planned marks only (non-text) */
+  --accent: #4B3AA8;      /* primary buttons, links, showcase dots */
+  --accent-hover: #2F2373;
+  --accent-soft: #F1EEFA; /* skill chips */
+  --accent-ink: #3B2E8A;
+  --radius: 20px;
+  --shadow: 0 8px 24px rgba(30, 27, 46, 0.06);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); }
+a:hover { color: var(--accent-hover); }
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { color: var(--ink); margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.label { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--subtle); }
+.lede { font-size: 18px; color: var(--muted); max-width: 620px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 10px 14px; border-radius: 8px; }
+.skip:focus { left: 8px; z-index: 10; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* header + footer */
+/* The same bar sits on every page (home, case studies, dashboards), pinned to the top. Dashboards carry
+   a scoped copy of these rules (.sitebar) because they load the dashboard theme, not this file. */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 30; }
+section[id], .cs-main section { scroll-margin-top: 80px; }
+.site-header nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; padding-bottom: 14px; }
+.brand { font-weight: 800; font-size: 18px; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; flex-wrap: wrap; gap: 4px; }
+.nav-links a { padding: 10px 14px; border-radius: 999px; font-weight: 600; font-size: 14px; text-decoration: none; color: #3D3852; }
+.nav-links a:hover { background: var(--accent-soft); color: var(--accent-ink); }
+.site-footer { border-top: 1px solid var(--line); background: var(--surface); margin-top: 24px; }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 28px; padding-bottom: 28px; font-size: 14px; color: var(--subtle); }
+
+/* buttons + chips */
+.btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 22px; border-radius: 12px; font-weight: 700; text-decoration: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.btn:hover { border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+.btn.primary:hover { background: var(--accent-hover); color: #FFFFFF; }
+.btn.small { min-height: 44px; padding: 10px 16px; font-size: 14px; border-radius: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); font-size: 13px; font-weight: 600; }
+.chip.quiet { background: #F5F4F8; color: var(--muted); }
+
+/* home: hero */
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: center; padding-top: 72px; padding-bottom: 56px; }
+.hero-copy { display: flex; flex-direction: column; gap: 20px; }
+.hero h1 { font-size: clamp(34px, 5vw, 54px); line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
+.creds { padding: 28px; display: flex; flex-direction: column; gap: 18px; }
+.creds dl { margin: 0; display: flex; flex-direction: column; gap: 16px; }
+.cred-row { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; }
+.creds dt { font-weight: 700; color: var(--ink); }
+.creds dd { margin: 0; color: var(--muted); }
+.creds .note { flex-basis: 100%; font-size: 14px; color: var(--subtle); }
+.creds .chips { border-top: 1px solid var(--line-2); padding-top: 16px; }
+
+/* home: sections */
+.section { padding-top: 32px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 20px; }
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.section-head > div { display: flex; flex-direction: column; gap: 8px; }
+.section h2 { font-size: 32px; font-weight: 800; }
+.section-head p { color: var(--muted); max-width: 640px; }
+
+/* skills matrix */
+.legend { display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.matrix-box { overflow-x: auto; }
+.matrix { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 15px; }
+.matrix thead th { background: var(--surface-2); padding: 18px 16px; border-bottom: 1px solid var(--line); text-align: center; width: 220px; font-weight: 800; color: var(--ink); }
+.matrix thead th:first-child { text-align: left; padding-left: 24px; width: auto; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--subtle); }
+.matrix thead th a { text-decoration: none; }
+.matrix thead .sub { display: block; font-size: 12px; font-weight: 500; color: var(--subtle); margin-top: 4px; }
+.matrix tbody th { text-align: left; padding: 16px 24px; font-weight: 600; color: var(--ink); }
+.matrix tbody th .sub { display: block; font-size: 13px; font-weight: 400; color: var(--subtle); }
+.matrix td { text-align: center; color: #B8B3C7; }
+.matrix tbody tr + tr > * { border-top: 1px solid var(--line-2); }
+.dot { display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 50%; }
+.dot::before { content: ""; width: 18px; height: 18px; border-radius: 50%; box-sizing: border-box; }
+.dot.show::before { background: var(--accent); }
+.dot.used::before { border: 2px solid var(--accent); }
+.dot.planned::before { border: 2px dashed var(--faint); }
+a.dot:hover { background: var(--accent-soft); }
+/* Home page: a project card's "See them in the skills matrix" link targets that project's column header;
+   the targeted column is tinted so the reader lands on it. */
+.matrix th[id] { scroll-margin-top: 200px; }
+.matrix:has(#matrix-olist:target) tr > :nth-child(2) { background: var(--accent-soft); }
+.key { width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; display: inline-block; }
+.key.show { background: var(--accent); }
+.key.used { border: 2px solid var(--accent); }
+.key.planned { border: 2px dashed var(--faint); }
+
+/* project cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.project-card { overflow: hidden; display: flex; flex-direction: column; }
+.project-card .thumb { width: 100%; border-bottom: 1px solid var(--line); background: var(--surface); }
+.project-card .body { padding: 24px; display: flex; flex-direction: column; gap: 14px; flex-grow: 1; }
+.project-card h3 { font-size: 22px; font-weight: 800; }
+.project-card p { color: var(--muted); }
+.project-card .meta { font-size: 13px; color: var(--subtle); }
+.card-skills { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--line-2); padding-top: 14px; }
+.skills-link { font-size: 14px; font-weight: 700; text-decoration: none; }
+.skills-link:hover { text-decoration: underline; }
+.project-card .btns { margin-top: auto; padding-top: 6px; gap: 10px; }
+.placeholder-card { background: var(--surface-2); border: 2px dashed #D9D5E6; border-radius: var(--radius); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; padding: 40px; min-height: 340px; text-align: center; }
+.placeholder-card h3 { font-size: 20px; color: var(--subtle); }
+.placeholder-card p { color: var(--subtle); max-width: 280px; }
+
+/* case study */
+.cs-top { background: var(--surface); border-bottom: 1px solid var(--line); }
+.cs-top .wrap { padding-top: 48px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 18px; }
+.cs-top h1 { font-size: clamp(30px, 4.5vw, 46px); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; max-width: 900px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; padding-top: 32px; }
+.stat { padding: 20px; display: flex; flex-direction: column; gap: 6px; box-shadow: none; border-radius: 16px; }
+.stat b { font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1.2; }
+.stat span { color: var(--muted); font-size: 14px; }
+.cs-body { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; padding-top: 32px; padding-bottom: 56px; }
+.toc { flex: 1 1 220px; max-width: 260px; display: flex; flex-direction: column; gap: 2px; font-size: 14px; position: sticky; top: 88px; }
+.toc a { padding: 9px 12px; border-radius: 8px; text-decoration: none; color: #3D3852; }
+.toc a:hover { background: var(--accent-soft); color: var(--accent-ink); }
+.toc .label { margin-bottom: 8px; }
+.cs-main { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 44px; font-size: 17px; line-height: 1.7; }
+.cs-main section { display: flex; flex-direction: column; gap: 14px; }
+.cs-main h2 { font-size: 26px; font-weight: 800; }
+.cs-main ol, .cs-main ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; }
+.cs-main figure { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.cs-main figure img { border-radius: 16px; border: 1px solid var(--line); background: var(--surface); }
+.cs-main figcaption { font-size: 14px; color: var(--subtle); }
+.decisions { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.decision { padding: 18px; font-size: 15px; line-height: 1.6; box-shadow: none; border-radius: 14px; }
+.decision strong { display: block; margin-bottom: 4px; color: var(--ink); }
+/* Case study: the key-result tiles sit inside section 2, above the findings */
+.cs-main .stats { padding-top: 0; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.cs-main .stat b { font-size: 28px; }
+/* Findings paired with the action each one supports (case-study section 2) */
+.fa-list { display: flex; flex-direction: column; gap: 14px; }
+.fa { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; padding: 0; box-shadow: none; border-radius: 14px; overflow: hidden; font-size: 15px; line-height: 1.6; }
+.fa > div { padding: 18px; }
+.fa strong { display: block; margin-bottom: 4px; color: var(--ink); }
+.fa .label { font-size: 12px; margin-bottom: 6px; }
+.fa .fa-act { background: var(--accent-soft); }
+.fa .fa-act .label { color: var(--accent-ink); }
+.toc .toc-sub { margin-top: 14px; }
+.code { background: var(--ink); color: #E9E6F5; border-radius: 14px; padding: 18px 20px; font-family: var(--mono); font-size: 14px; line-height: 1.6; overflow-x: auto; white-space: pre; }
+.source { font-size: 14px; color: var(--subtle); border-top: 1px solid var(--line); padding-top: 18px; }
+@media (max-width: 720px) { .toc { position: static; max-width: none; } }

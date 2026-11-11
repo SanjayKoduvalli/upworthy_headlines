@@ -1,0 +1,1683 @@
+[
+{
+"k": "L001",
+"h": "He Listed Off All The Things That Could Be Done With My $3 And I Was Like, 'No Way.' But Yes Way.",
+"human": {
+"g": "m",
+"s": "+",
+"t": "ECO"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"ECO"
+]
+}
+},
+{
+"k": "L002",
+"h": "What's it really like working for minimum wage all day? Let's hear from those actually living it.",
+"e": "Here's what it's like living it. And what folks are doing to change things.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "ECO"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"ECO"
+]
+}
+},
+{
+"k": "L003",
+"h": "Wow: Watch The Words Scroll Down And (Kinda) Transform Before Your Eyes",
+"e": "This is just really, really cool.",
+"human": {
+"g": "n",
+"s": "+",
+"t": ""
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": []
+}
+},
+{
+"k": "L004",
+"h": "An Expert Stops Colbert's Comments On Gang Violence And Tells Him The Bravest Way To Interrupt",
+"human": {
+"g": "m",
+"s": "0",
+"t": "CRI"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": [
+"CRI",
+"ENT"
+]
+}
+},
+{
+"k": "L005",
+"h": "There's A Global Daily Fight Between Good Guys, Bad Guys And Zombies. You're Part Of It.",
+"e": "See it go down in real time.",
+"human": {
+"g": "n",
+"s": "0",
+"t": ""
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"SCI"
+]
+}
+},
+{
+"k": "L006",
+"h": "How To Explain Evolution To Someone Holding A Sign And Yelling",
+"e": "For the last time, we didn't evolve from monkeys.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "SCI"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"SCI",
+"EDU"
+]
+}
+},
+{
+"k": "L007",
+"h": "You May Not Know About These Awesome Women Yet, But 2 Minutes From Now, You'll Be Glad You Do",
+"human": {
+"g": "f",
+"s": "+",
+"t": "GEN"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"GEN",
+"HUM"
+]
+}
+},
+{
+"k": "L008",
+"h": "What This Husband Did When His Wife Got Cancer Will Keep Her Alive Forever",
+"e": "Things you should know about cancer.",
+"human": {
+"g": "b",
+"s": "+",
+"t": "HEA"
+},
+"ai": {
+"g": "b",
+"s": "+",
+"t": [
+"HEA",
+"HUM",
+"FAM"
+]
+}
+},
+{
+"k": "L009",
+"h": "What Would The Gaza Bombing Look Like If It Was Happening In New York? Miami? L.A.?",
+"human": {
+"g": "n",
+"s": "0",
+"t": "POL"
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"POL"
+]
+}
+},
+{
+"k": "L010",
+"h": "Science Is Real. Just Sayin'.",
+"e": "This is science fact.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "SCI"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"SCI"
+]
+}
+},
+{
+"k": "L011",
+"h": "At First She Didn't Know Why Her Teachers Were So Mean To Her. Now The Reason Makes Her Cry.",
+"human": {
+"g": "f",
+"s": "-",
+"t": "EDU"
+},
+"ai": {
+"g": "f",
+"s": "-",
+"t": [
+"EDU",
+"HUM"
+]
+}
+},
+{
+"k": "L012",
+"h": "A New York woman just made the kind of movie that Hollywood almost never makes — all by herself.",
+"e": "Take a look at what one woman is doing to change the world of movies.",
+"human": {
+"g": "f",
+"s": "+",
+"t": "ENT"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"GEN",
+"ENT"
+]
+}
+},
+{
+"k": "L013",
+"h": "A 4-Year-Old Girl Asked A Lesbian If She Was A Boy. She Responded. Awesomely.",
+"e": "It involves pajamas and pancakes.",
+"human": {
+"g": "f",
+"s": "+",
+"t": "GEN"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"GEN",
+"FAM"
+]
+}
+},
+{
+"k": "L014",
+"h": "Watch A Comedian Get Ridiculously Profound. Seriously, Just Watch HIm For 3 Minutes.",
+"e": "This is what it looks like when a comedian gets way deep and insults his advertisers and audience.",
+"human": {
+"g": "m",
+"s": "+",
+"t": "HUM"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"ENT"
+]
+}
+},
+{
+"k": "L015",
+"h": "Like I Even Have To Write A Cool Headline To Entice You To Watch What A Grape Does In A Microwave",
+"human": {
+"g": "n",
+"s": "+",
+"t": "SCI"
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": [
+"SCI"
+]
+}
+},
+{
+"k": "L016",
+"h": "This Might Be Jon Stewart's Best Rant Ever. Poor Bill O'Reilly. Just Kidding.",
+"human": {
+"g": "m",
+"s": "+",
+"t": "ENT"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"POL",
+"ENT"
+]
+}
+},
+{
+"k": "L017",
+"h": "When Some Guys Realize Rape Culture And Racism Kinda Work In A Similar Way",
+"human": {
+"g": "m",
+"s": "0",
+"t": "GEN"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": [
+"GEN",
+"RAC"
+]
+}
+},
+{
+"k": "L018",
+"h": "Go Find A Kid, This Nugget Of Goodness Is Actually For Them",
+"human": {
+"g": "n",
+"s": "+",
+"t": "FAM"
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": [
+"FAM"
+]
+}
+},
+{
+"k": "L019",
+"h": "When Frat Bros Gather To Watch 2 Girls Make Out, They End Up...",
+"e": "What happens when these dude bros catch 2 women kissing at a party? Their hearts melt.",
+"human": {
+"g": "b",
+"s": "0",
+"t": "GEN"
+},
+"ai": {
+"g": "b",
+"s": "+",
+"t": [
+"GEN"
+]
+}
+},
+{
+"k": "L020",
+"h": "9-year olds with smartphones are why every parent needs this video and these tips",
+"e": "Know a teen or tween? Pass this along to their parents -- you never know how it could help.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "FAM"
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"FAM",
+"SCI"
+]
+}
+},
+{
+"k": "L021",
+"h": "Cops Can Make You Stop Doing A Lot Of Things. But Not This.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "CRI"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"CRI"
+]
+}
+},
+{
+"k": "L022",
+"h": "A Guy Who Gets Paid To Study Play Wants Us To Know About Mental Health Issues We Should Care About",
+"human": {
+"g": "m",
+"s": "0",
+"t": "HEA"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": [
+"HEA"
+]
+}
+},
+{
+"k": "L023",
+"h": "The Most Personal Ice Bucket Challenge Will Break Your Heart And Make You Learn Something",
+"human": {
+"g": "n",
+"s": "-",
+"t": "HEA"
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"HEA"
+]
+}
+},
+{
+"k": "L024",
+"h": "It's Not A Unique Concept, But The Way He Says It Is So Gorgeous",
+"human": {
+"g": "m",
+"s": "+",
+"t": "HUM"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": []
+}
+},
+{
+"k": "L025",
+"h": "A Gigantic Corporation Tied To Mess With One Young Farmer, But She's Not Havin' It",
+"human": {
+"g": "f",
+"s": "-",
+"t": "HUM"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"ECO"
+]
+}
+},
+{
+"k": "L026",
+"h": "A parody rap video about the people who profit off of hurting our homes. It's so weird it's good.",
+"e": "Gangnam style nostalgia! This it's a weird-good spoof about Earth.",
+"human": {
+"g": "n",
+"s": "+",
+"t": "ECO"
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": [
+"ENV",
+"ENT"
+]
+}
+},
+{
+"k": "L027",
+"h": "Move Over Mark Zuckerberg. Little Black Girls Are Coming For Your Throne.",
+"human": {
+"g": "b",
+"s": "+",
+"t": "RAC"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"RAC",
+"GEN",
+"SCI"
+]
+}
+},
+{
+"k": "L028",
+"h": "A Comic Shows One Woman's Thought Process On How To Deal With Creeps On The Street",
+"human": {
+"g": "f",
+"s": "-",
+"t": "GEN"
+},
+"ai": {
+"g": "f",
+"s": "0",
+"t": [
+"GEN"
+]
+}
+},
+{
+"k": "L029",
+"h": "Here's How It Would Look If We Cared About The Environment The Way We Care About Sports",
+"human": {
+"g": "n",
+"s": "0",
+"t": "ENV"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"ENV"
+]
+}
+},
+{
+"k": "L030",
+"h": "These Differing Takes On 'The Talk' Suggest We Live In 2 Different Americas.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "POL"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"RAC",
+"CRI"
+]
+}
+},
+{
+"k": "L031",
+"h": "What Do We Really Mean When They Talk About Women's Bodies? What These Women Really Say.",
+"human": {
+"g": "f",
+"s": "0",
+"t": "GEN"
+},
+"ai": {
+"g": "f",
+"s": "0",
+"t": [
+"GEN"
+]
+}
+},
+{
+"k": "L032",
+"h": "Something Tells Me There Was More Cooperation And 'Playing Nice' In Washington When Ike Wrote This",
+"e": "Turns out, this quote is not made up...",
+"human": {
+"g": "m",
+"s": "0",
+"t": "POL"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": [
+"POL"
+]
+}
+},
+{
+"k": "L033",
+"h": "Two Infographics And A Fake Phone Call Show You Why Comcast Treats Its Customers Like Sh*t",
+"human": {
+"g": "n",
+"s": "-",
+"t": "ENT"
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"ECO"
+]
+}
+},
+{
+"k": "L034",
+"h": "What are friends for, if not to convince you to play drums in a band at age 89?",
+"e": "You have to live.",
+"human": {
+"g": "n",
+"s": "+",
+"t": "HUM"
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": [
+"HUM",
+"ENT"
+]
+}
+},
+{
+"k": "L035",
+"h": "When You Turn Prison Into An Industry That Needs Bodies, Things Go … Screwy",
+"human": {
+"g": "n",
+"s": "-",
+"t": "CRI"
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"CRI",
+"ECO"
+]
+}
+},
+{
+"k": "L036",
+"h": "3 things you can say to a friend after they've been assaulted or attacked",
+"e": "Things that matter. Pass them on.",
+"human": {
+"g": "n",
+"s": "-",
+"t": "CRI"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"GEN",
+"HUM"
+]
+}
+},
+{
+"k": "L037",
+"h": "Her world was destroyed in a single moment, half a planet away. Her parents *may* be happy about it.",
+"e": "Arati Warrier speaks passionately about how her family can't accept something about her.",
+"human": {
+"g": "f",
+"s": "-",
+"t": "HUM"
+},
+"ai": {
+"g": "f",
+"s": "0",
+"t": [
+"FAM",
+"GEN"
+]
+}
+},
+{
+"k": "L038",
+"h": "I Had No Idea Where This Comedian Was Going With His Jokes At First, But Then At The End, I Knew Why",
+"human": {
+"g": "m",
+"s": "0",
+"t": "ENT"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": [
+"ENT"
+]
+}
+},
+{
+"k": "L039",
+"h": "She Invented A Whole New Kind Of Jeans. I'm Down With That.",
+"human": {
+"g": "f",
+"s": "+",
+"t": "SCI"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"ECO",
+"SCI"
+]
+}
+},
+{
+"k": "L040",
+"h": "From Saudi Arabia To Hollywood: Her Powerful Lyrics About Women Stayed In My Head All Day",
+"human": {
+"g": "f",
+"s": "+",
+"t": "GEN"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"GEN",
+"ENT"
+]
+}
+},
+{
+"k": "L041",
+"h": "The Victims Of A 2013 Disaster Are Here To Warn Us That It Could (And Will) All Happen Again",
+"human": {
+"g": "n",
+"s": "-",
+"t": ""
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"ENV"
+]
+}
+},
+{
+"k": "L042",
+"h": "Watching This Kid Pretend To Be President Obama Is Funny. The Message? Not So Much.",
+"human": {
+"g": "m",
+"s": "0",
+"t": "POL"
+},
+"ai": {
+"g": "m",
+"s": "-",
+"t": [
+"POL"
+]
+}
+},
+{
+"k": "L043",
+"h": "She Based Her Career And This Poem On Reminding Everyone That They Are The Bomb Diggity",
+"human": {
+"g": "f",
+"s": "+",
+"t": "HUM"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"HUM",
+"ENT"
+]
+}
+},
+{
+"k": "L044",
+"h": "Watch A Big Bang Theorist Get What He Deserves Right On His Front Doorstep",
+"human": {
+"g": "m",
+"s": "0",
+"t": "ENT"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": [
+"ENT",
+"SCI"
+]
+}
+},
+{
+"k": "L045",
+"h": "Pharrell Might Wanna Trade In His Hat When He Hears What The Mounties Did To David Suzuki's Family",
+"human": {
+"g": "m",
+"s": "0",
+"t": "ENT"
+},
+"ai": {
+"g": "m",
+"s": "-",
+"t": [
+"RAC",
+"CRI",
+"ENT"
+]
+}
+},
+{
+"k": "L046",
+"h": "How To Know If Your Private Bits Should Have Any Impact On The Toys You Get To Play With",
+"e": "Wow, the math on this is pretty simple.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "GEN"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"GEN",
+"FAM"
+]
+}
+},
+{
+"k": "L047",
+"h": "He Was Filled With Racism, Hate, And Swastika Tattoos. Then Someone Changed His Mind.",
+"e": "It took a little more than prison for him to rethink his path.",
+"human": {
+"g": "m",
+"s": "-",
+"t": "RAC"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"RAC",
+"CRI",
+"HUM"
+]
+}
+},
+{
+"k": "L048",
+"h": "Meet The Man Who Documented The Newtown Tragedy",
+"e": "Healing a town, and a nation, in the wake of tragedy.",
+"human": {
+"g": "m",
+"s": "-",
+"t": "HUM"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": [
+"HUM",
+"CRI"
+]
+}
+},
+{
+"k": "L049",
+"h": "Why You Should Maybe Become An Investor In A Cheese Steak Shop Today",
+"human": {
+"g": "n",
+"s": "0",
+"t": "ECO"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"ECO"
+]
+}
+},
+{
+"k": "L050",
+"h": "Canceling out the harmful effects of sitting can be done without even breaking a sweat.",
+"e": "When I realized how dangerous too much sitting can be, I got to searching and this is what I found.",
+"human": {
+"g": "n",
+"s": "+",
+"t": "HEA"
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": [
+"HEA"
+]
+}
+},
+{
+"k": "L051",
+"h": "The Strange Things Women Used To Insert In Their Bodies In The Hopes Of Avoiding Pregnancy",
+"human": {
+"g": "f",
+"s": "0",
+"t": "HEA"
+},
+"ai": {
+"g": "f",
+"s": "0",
+"t": [
+"HEA",
+"GEN"
+]
+}
+},
+{
+"k": "L052",
+"h": "This Teenaged Girl Just Took High School Science Fairs To A WHOLE New Level",
+"human": {
+"g": "f",
+"s": "+",
+"t": "SCI"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"SCI",
+"EDU"
+]
+}
+},
+{
+"k": "L053",
+"h": "I Didn't Expect The Turn At 0:17, So It Hit Me Right In The Gut",
+"human": {
+"g": "n",
+"s": "0",
+"t": ""
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": []
+}
+},
+{
+"k": "L054",
+"h": "Nowhere Near The Ocean? Find Out Why You Should Still Care About It.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "ENV"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"ENV"
+]
+}
+},
+{
+"k": "L055",
+"h": "The best thing about the gay wedding was this straight guy's reaction to it.",
+"e": "Josh Healey's coming out was slightly different than most.",
+"human": {
+"g": "m",
+"s": "+",
+"t": "GEN"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"GEN"
+]
+}
+},
+{
+"k": "L056",
+"h": "How An Old School Way Of Having Sex Is Kinda Making A Come-Back For Birth Control",
+"e": "It's all in the timing.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "HEA"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"HEA",
+"GEN"
+]
+}
+},
+{
+"k": "L057",
+"h": "People Stopping Politicians Making Money From Something That Would Ruin the Country? Sign Me Up.",
+"human": {
+"g": "b",
+"s": "0",
+"t": "POL"
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": [
+"POL",
+"ECO",
+"ENV"
+]
+}
+},
+{
+"k": "L058",
+"h": "8 love letters to survivors of sexual violence. The one from the dad made me cry.",
+"e": "I welled up with tears when I started reading these.",
+"human": {
+"g": "n",
+"s": "+",
+"t": "GEN"
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"GEN",
+"HUM"
+]
+}
+},
+{
+"k": "L059",
+"h": "There Are People In Our Lives Who Are So Good At What They Do, You Never See Them. Here's One Story.",
+"human": {
+"g": "n",
+"s": "+",
+"t": "HUM"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"HUM"
+]
+}
+},
+{
+"k": "L060",
+"h": "FUN APOCALYPSE: Why Would You Take This OUT Of The Classroom?",
+"e": "Okay, maybe 1984 wasn't all that bad.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "EDU"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"EDU",
+"ENT"
+]
+}
+},
+{
+"k": "L061",
+"h": "A Brilliant Scientist Created The Coolest Toy Ever For This Kid So He Wouldn't Feel Left Out",
+"human": {
+"g": "m",
+"s": "+",
+"t": "FAM"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"SCI",
+"HUM"
+]
+}
+},
+{
+"k": "L062",
+"h": "If You Don't Like What He Has To Say, Then Deep Down, You Probably Know You're Wrong",
+"human": {
+"g": "m",
+"s": "-",
+"t": "HUM"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": []
+}
+},
+{
+"k": "L063",
+"h": "In 2016, there will be two elections. 99.9% of you won't get to vote in the important one.",
+"e": "It's on us now. Can we keep it?",
+"human": {
+"g": "n",
+"s": "-",
+"t": "POL"
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"POL"
+]
+}
+},
+{
+"k": "L064",
+"h": "Most Of Us Can Relate To This Protester's Description Of What She's Fighting For: 'A Normal Life'",
+"human": {
+"g": "f",
+"s": "+",
+"t": "POL"
+},
+"ai": {
+"g": "f",
+"s": "0",
+"t": [
+"POL",
+"HUM"
+]
+}
+},
+{
+"k": "L065",
+"h": "She Wants Transparency. Other Doctors Talk About Wanting Her Dead.",
+"human": {
+"g": "f",
+"s": "-",
+"t": "HEA"
+},
+"ai": {
+"g": "f",
+"s": "-",
+"t": [
+"HEA"
+]
+}
+},
+{
+"k": "L066",
+"h": "When It Comes To Helping Slow Global Warming, These Women Get Results. Damn Right.",
+"human": {
+"g": "f",
+"s": "+",
+"t": "ENV"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"ENV",
+"GEN"
+]
+}
+},
+{
+"k": "L067",
+"h": "It Looks Like He's Just Swimming Around, But Then We Zoom Out And My Breath Leaves My Body Forever",
+"human": {
+"g": "m",
+"s": "+",
+"t": "HEA"
+},
+"ai": {
+"g": "m",
+"s": "-",
+"t": []
+}
+},
+{
+"k": "L068",
+"h": "Boys, Here's How You Can Rule Out Sleeping With Someone",
+"human": {
+"g": "m",
+"s": "0",
+"t": "HEA"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": [
+"GEN"
+]
+}
+},
+{
+"k": "L069",
+"h": "Wanna Hear Rick Santorum's Crazy-Bigoted Theory About The Popularity Of Gay Marriage?",
+"e": "What's REALLY behind all this pro gay marriage nonsense? Santorum knows, and he's telling the world.",
+"human": {
+"g": "m",
+"s": "-",
+"t": "GEN"
+},
+"ai": {
+"g": "m",
+"s": "-",
+"t": [
+"POL",
+"GEN"
+]
+}
+},
+{
+"k": "L070",
+"h": "Are You Ready To See A Bunch Of Badass Women Make History On A Native American Reservation?",
+"e": "He said women are \"disrespecting themselves\" for trying to access this info. These women disagree.",
+"human": {
+"g": "f",
+"s": "+",
+"t": "RAC"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"RAC",
+"GEN",
+"POL"
+]
+}
+},
+{
+"k": "L071",
+"h": "See How Easily This Shampoo Ad Calls Out A Double Standard Women Face In The Workplace And Beyond",
+"e": "Watch how this shampoo ad tackles a sensitive gender stereotype in just 60 seconds. #promotedpost",
+"human": {
+"g": "f",
+"s": "0",
+"t": "GEN"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"GEN",
+"ECO",
+"ENT"
+]
+}
+},
+{
+"k": "L072",
+"h": "Everything Is Different 20 Years After They Started Riding. The Map At The Bottom Proves It.",
+"e": "This is no ordinary biker club.",
+"human": {
+"g": "n",
+"s": "0",
+"t": ""
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": []
+}
+},
+{
+"k": "L073",
+"h": "The System Split This Family Up. So Some Brothers And Sisters Brought Them Back Together.",
+"e": "Stuff that matters. Pass it on.",
+"human": {
+"g": "b",
+"s": "+",
+"t": "FAM"
+},
+"ai": {
+"g": "b",
+"s": "+",
+"t": [
+"FAM",
+"HUM"
+]
+}
+},
+{
+"k": "L074",
+"h": "How Will You Spend Your Retirement Savings? Probably Not The Way She Spent Hers.",
+"human": {
+"g": "f",
+"s": "-",
+"t": "HUM"
+},
+"ai": {
+"g": "f",
+"s": "0",
+"t": [
+"ECO"
+]
+}
+},
+{
+"k": "L075",
+"h": "All he wanted was to get revenge on his bully. But when he tried, he discovered something so sad.",
+"human": {
+"g": "m",
+"s": "-",
+"t": "HUM"
+},
+"ai": {
+"g": "m",
+"s": "-",
+"t": [
+"HUM"
+]
+}
+},
+{
+"k": "L076",
+"h": "You Know Those Models With Unrealistic Bodies? Ellen Had One On Her Show. Yep, Totally Impossible.",
+"e": "A Photoshopped model with a completely unrealistic body appears on Ellen to clear up the confusion. And it's hilarious.",
+"human": {
+"g": "f",
+"s": "-",
+"t": "GEN"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"GEN",
+"ENT"
+]
+}
+},
+{
+"k": "L077",
+"h": "She Was Just 10 Years-Old, And The Man She Was Supposed To Marry Already Had A Wife",
+"human": {
+"g": "b",
+"s": "-",
+"t": "GEN"
+},
+"ai": {
+"g": "b",
+"s": "-",
+"t": [
+"GEN",
+"FAM"
+]
+}
+},
+{
+"k": "L078",
+"h": "She Was Mad As Hell When People Asked If Her White-Skinned Baby Was Hers. Her Reply?",
+"human": {
+"g": "f",
+"s": "-",
+"t": "RAC"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"RAC",
+"FAM"
+]
+}
+},
+{
+"k": "L079",
+"h": "A Comedian Grills The Old Head Of Most Secretive Government Agency Ever. Well Done.",
+"human": {
+"g": "n",
+"s": "+",
+"t": "ENT"
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": [
+"POL",
+"ENT"
+]
+}
+},
+{
+"k": "L080",
+"h": "Over 1/2 Million Veterans Have Experienced Something Criminal At The Hands Of Fellow Soldiers",
+"human": {
+"g": "b",
+"s": "-",
+"t": "CRI"
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"CRI",
+"POL"
+]
+}
+},
+{
+"k": "L081",
+"h": "He Puts 11 Pictures On The Screen. The First 10 Are Funny. The Last 1 Is A Total Gut Punch.",
+"human": {
+"g": "m",
+"s": "0",
+"t": "ENT"
+},
+"ai": {
+"g": "m",
+"s": "-",
+"t": []
+}
+},
+{
+"k": "L082",
+"h": "A Firefighter Went To Put Out A Fire, But He Had No Idea He Would Be A Hero Of A Different Kind",
+"human": {
+"g": "m",
+"s": "+",
+"t": "HUM"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"HUM"
+]
+}
+},
+{
+"k": "L083",
+"h": "True Story: I Grew Up With A Kid Who Was The Class Bully. He Became A Cop.",
+"human": {
+"g": "m",
+"s": "-",
+"t": "CRI"
+},
+"ai": {
+"g": "m",
+"s": "0",
+"t": [
+"CRI",
+"EDU"
+]
+}
+},
+{
+"k": "L084",
+"h": "Dustin Hoffman Breaks Down Trying To Explain Something That Every Woman Sadly Already Realizes",
+"e": "A famous actor makes a frightening discovery about women and barely keeps it together explaining why.",
+"human": {
+"g": "b",
+"s": "-",
+"t": "GEN"
+},
+"ai": {
+"g": "b",
+"s": "-",
+"t": [
+"GEN",
+"ENT"
+]
+}
+},
+{
+"k": "L085",
+"h": "Congressman Responds Like A Real Person Would After Getting Inane Letter From His Coworkers",
+"e": "This is why we can't have nice things.",
+"human": {
+"g": "m",
+"s": "0",
+"t": "POL"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"POL"
+]
+}
+},
+{
+"k": "L086",
+"h": "What Brings Bill Clinton And A Muppet Together? A Message You Didn't Think Kids Needed To Hear.",
+"human": {
+"g": "m",
+"s": "+",
+"t": "FAM"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"FAM",
+"ENT",
+"POL"
+]
+}
+},
+{
+"k": "L087",
+"h": "If You Think Men And Women Should Have Equality Of Opportunity, You Probably Already Know The Answer",
+"human": {
+"g": "b",
+"s": "0",
+"t": "GEN"
+},
+"ai": {
+"g": "b",
+"s": "0",
+"t": [
+"GEN"
+]
+}
+},
+{
+"k": "L088",
+"h": "Save Lives: Paint Your Nails. (Seriously.)",
+"human": {
+"g": "n",
+"s": "+",
+"t": ""
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": [
+"HEA",
+"CRI"
+]
+}
+},
+{
+"k": "L089",
+"h": "Shocking Challenges Of Obama's Early Life Revealed In Latest Speech About The State Of Young America",
+"human": {
+"g": "m",
+"s": "-",
+"t": "POL"
+},
+"ai": {
+"g": "m",
+"s": "-",
+"t": [
+"POL",
+"HUM"
+]
+}
+},
+{
+"k": "L090",
+"h": "A Girl Said Something Really Racist To This Guy. The Worst Part? She Didn't Even Realize It.",
+"e": "Some people just don't get it... Do they?",
+"human": {
+"g": "b",
+"s": "-",
+"t": "RAC"
+},
+"ai": {
+"g": "b",
+"s": "-",
+"t": [
+"RAC"
+]
+}
+},
+{
+"k": "L091",
+"h": "Voters In One State Have Changed Things So Much, It's Like A Different Ballgame",
+"human": {
+"g": "n",
+"s": "0",
+"t": "POL"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": [
+"POL"
+]
+}
+},
+{
+"k": "L092",
+"h": "Standing In Line To Get A Video Game? Chew On This While You Wait.",
+"human": {
+"g": "n",
+"s": "0",
+"t": "ENT"
+},
+"ai": {
+"g": "n",
+"s": "0",
+"t": []
+}
+},
+{
+"k": "L093",
+"h": "How Much Living Space Does A Girl Need? This \"Minimum\" Is Pretty Horrifying.",
+"human": {
+"g": "f",
+"s": "-",
+"t": "ECO"
+},
+"ai": {
+"g": "f",
+"s": "-",
+"t": [
+"GEN",
+"ECO"
+]
+}
+},
+{
+"k": "L094",
+"h": "The science of why the comment section on just about anything is so awful.",
+"e": "We're people. People have feelings. Feelings make you do things.",
+"human": {
+"g": "n",
+"s": "-",
+"t": "SCI"
+},
+"ai": {
+"g": "n",
+"s": "-",
+"t": [
+"SCI",
+"ENT"
+]
+}
+},
+{
+"k": "L095",
+"h": "A comedian tells a story about terrorism that no one should laugh at. His audience passed the test.",
+"e": "If only more terrorists just did the right paperwork.",
+"human": {
+"g": "m",
+"s": "-",
+"t": "ENT"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"ENT",
+"POL"
+]
+}
+},
+{
+"k": "L096",
+"h": "A Reporter Asks Madonna A Question Everyone Else Was To Afraid To. She Slam-dunks Her Reply.",
+"human": {
+"g": "f",
+"s": "+",
+"t": "ENT"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"ENT"
+]
+}
+},
+{
+"k": "L097",
+"h": "A Man Writes Something Wonderful In Protest Of The Times He Lives In",
+"human": {
+"g": "m",
+"s": "+",
+"t": "POL"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"HUM"
+]
+}
+},
+{
+"k": "L098",
+"h": "He Really Likes To Drive. These Kids Really Need A Ride. Together They're Making Detroit's Future.",
+"human": {
+"g": "b",
+"s": "+",
+"t": "ECO"
+},
+"ai": {
+"g": "m",
+"s": "+",
+"t": [
+"HUM",
+"FAM"
+]
+}
+},
+{
+"k": "L099",
+"h": "Statistics Say We Should Take Friday Off From Work. All The Fridays, Forever And Ever.",
+"e": "If you work 50 hours a week or more, this infographic is about you!",
+"human": {
+"g": "n",
+"s": "0",
+"t": "ECO"
+},
+"ai": {
+"g": "n",
+"s": "+",
+"t": [
+"ECO"
+]
+}
+},
+{
+"k": "L100",
+"h": "It's A Popular Word Often Used To Insult Women. Hear Why 5 Young Women Are Totally Embracing It.",
+"human": {
+"g": "f",
+"s": "-",
+"t": "GEN"
+},
+"ai": {
+"g": "f",
+"s": "+",
+"t": [
+"GEN"
+]
+}
+}
+]

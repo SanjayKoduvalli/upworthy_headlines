@@ -35,8 +35,8 @@ upworthy_headlines/
 ├── pipeline/00_profile/       ← profile.py → docs/data_profile.md, build/profile_results.json
 ├── pipeline/01_load/, 02_clean/   ← load rules L1–L5, cleaning rules S1–S12 → build/ tables + docs/cleaning_log.md
 ├── pipeline/03_features/      ← codebook.py (v1, v2), label sample, make_classifier_inputs.py
-├── pipeline/04_analysis      ← to come
-├── LOCK.md                    ← (later) Sanjay's approval of final definitions; unlocks confirmatory
+├── pipeline/04_analysis/      ← aa_check, aa_calibrate, felogit (FE logit), main_effects, topic_effects; UPWORTHY_SPLIT=exploratory|confirmatory
+├── LOCK.md                    ← two-stage lock: stage 1 classifier (R15, Nov 10); stage 2 analysis (R22, Nov 11, code fingerprints)
 ├── scripts/checks/            ← independent checks (verify_profile.py)
 ├── tests/                     ← validation tests per layer
 ├── docs/                      ← data_profile, data_dictionary, decision_register, raw_checksums
@@ -48,12 +48,15 @@ upworthy_headlines/
 - Step 1 (setup): ✅ folder, raw copy, checksums, license
 - Step 2 (profiling): ✅ approved (with R7 sentiment/topic variables and R8 reader-facing text only)
 - Steps 4–5 (load + cleaning): 🔍 built; 15/15 tests, independent check and mutation test pass; awaiting review
-- Step 6 (text features): 🔁 hand labels done (100 headlines, blind; NOTES §5.3). Codebook v2: gender (4), sentiment (3), 12 topic tags as 0/1 columns, LGBTQ+ merged into gender equality (R12–R13). Classifier = Claude with a fixed prompt, run from the Headline Classifier artifact (https://claude.ai/artifact/Vw1wA4fVjuhi8yww7d1nta; results in its `results` database collection) (R14). Waiting for Sanjay's step-1 check
+- Step 6 (text features): 🔁 hand labels done (100 headlines, blind; NOTES §5.3). Codebook v2: gender (4), sentiment (3), 12 topic tags as 0/1 columns, LGBTQ+ merged into gender equality (R12–R13). Classifier = Claude with a fixed prompt, run from the Headline Classifier artifact (https://claude.ai/artifact/Vw1wA4fVjuhi8yww7d1nta; results in its `results` database collection) (R14). Default model chosen and exploratory labeled (14,465 units). Classifier locked (stage 1, R15); confirmatory labeling (977 calls) run by Sanjay from the page; import with `scripts/import_classifier_labels.py <export> default`
 - Portfolio-wide to-do list: `~/projects/sanjaykoduvalli.github.io/TODO.md`; start there, and update it at the end of each session.
-- Next: export labels → join to packages via `build/03_features/units.csv.gz` → LOCK.md approval → confirmatory run → A/B analysis (A/A false-positive check first) and regression with topic tags, gender × topic and gender × sentiment
+- ✅ Done since: labels exported and joined; LOCK.md stages 1–2 approved; A/A check, calibration, main and topic models run on exploratory then once on confirmatory (see Step 7)
 
 ## 6. How to resume
 1. Read this file, NOTES.md and docs/decision_register.md.
 2. Download the archive from https://osf.io/jd64p/ into `data/raw/osf_jd64p/` and check `docs/raw_checksums.txt`.
 3. `pip install -r requirements.txt`; `python3 scripts/build.py` (profile, load, clean, tests, independent checks).
 4. Continue with the next step under the rules above.
+- Step 7 (analysis): ✅ A/A check + calibration, main model, topic models; run on exploratory, then once on confirmatory (results of record: docs/results/confirmatory/, NOTES §8.4)
+- Step 8 (case study, R23): 🔍 draft built 2026-11-11: index.html (generated), assets/figures, notebooks/walkthrough.ipynb. Rebuild: `python3 pipeline/05_report/figures.py && python3 pipeline/05_report/build_case_study.py && python3 pipeline/05_report/make_notebook.py`
+- Next: Sanjay's review of the page; statsmodels check on his Mac; push; turn on GitHub Pages; add the Upworthy card and skills column to the home site

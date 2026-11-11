@@ -169,7 +169,7 @@ def test_lock__confirmatory_blocked_without_approval():
     """L4: without LOCK.md, reading confirmatory rows from a build table raises an error, while exploratory reads work."""
     import common
     bad = []
-    if os.path.exists(common.LOCK_FILE) and "Approved by Sanjay:" in open(common.LOCK_FILE, encoding="utf-8").read():
+    if common.analysis_lock_approved():
         return pd.DataFrame(columns=["problem"])          # lock already approved: nothing to enforce
     for split in (None, "confirmatory"):
         try:
@@ -181,4 +181,45 @@ def test_lock__confirmatory_blocked_without_approval():
         load_table("02_clean/tests", split="exploratory")
     except PermissionError:
         bad.append("exploratory was blocked")
+    return pd.DataFrame({"problem": bad})
+
+
+def test_lock__classifier_stage_gives_text_only():
+    """R15: the classifier lock opens confirmatory headline text with no outcome columns, and leaves outcomes locked."""
+    import common
+    bad = []
+    lock = open(common.LOCK_FILE, encoding="utf-8").read() if os.path.exists(common.LOCK_FILE) else ""
+    if common.CLASSIFIER_LOCK_LINE in lock:
+        df = common.load_text_for_classifier("confirmatory")
+        leaked = [c for c in df.columns if c in ("impressions", "clicks", "winner", "significance", "first_place")]
+        if leaked:
+            bad.append(f"outcome columns returned: {leaked}")
+        if set(df.split) != {"confirmatory"}:
+            bad.append("wrong split returned")
+    else:
+        try:
+            common.load_text_for_classifier("confirmatory")
+            bad.append("confirmatory text readable without the classifier lock")
+        except PermissionError:
+            pass
+    if not common.analysis_lock_approved():
+        try:
+            load_table("02_clean/tests", split="confirmatory")
+            bad.append("outcomes readable with only the classifier lock")
+        except PermissionError:
+            pass
+    return pd.DataFrame({"problem": bad})
+
+
+def test_lock__only_a_dated_line_opens_stage_2():
+    """Regression test (2026-11-11): describing the approval line in prose must not count as the approval."""
+    import common
+    bad = []
+    fake = ['When Sanjay approves, a line reading "Approved by Sanjay: <date>" goes here.',
+            "Note: Approved by Sanjay: 2026-11-11 (quoted mid-line)"]
+    for text in fake:
+        if common.ANALYSIS_LOCK_RE.search(text):
+            bad.append(f"accepted: {text}")
+    if not common.ANALYSIS_LOCK_RE.search("Approved by Sanjay: 2026-11-11 (\"I approve stage 2 lock\")"):
+        bad.append("rejected a real approval line")
     return pd.DataFrame({"problem": bad})

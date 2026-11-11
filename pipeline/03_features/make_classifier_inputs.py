@@ -9,7 +9,7 @@ Writes, into the folder given as the first argument (the classifier page's data 
   prompt.json      the fixed instructions, built from codebook.py (one source of truth for the definitions)
   validation.json  Sanjay's 100 blind-labeled headlines with his labels (v1 mapped to v2), to score the classifier
   exploratory.json all exploratory units, in batches
-  confirmatory.json  only when LOCK.md records Sanjay's approval (rule L4); not written otherwise
+  confirmatory.json  only after the classifier lock in LOCK.md (R15), and only if the prompt is unchanged; text only
 and build/03_features/units.csv.gz (key → package rows) for joining the labels back.
 """
 import csv
@@ -19,7 +19,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from common import DOCS, LOCK_FILE, load_table, save_table  # noqa: E402
+from common import CLASSIFIER_LOCK_LINE, DOCS, LOCK_FILE, load_table, load_text_for_classifier, save_table  # noqa: E402
 import importlib.util  # noqa: E402
 
 spec = importlib.util.spec_from_file_location("codebook", os.path.join(os.path.dirname(__file__), "codebook.py"))
@@ -92,9 +92,13 @@ json.dump({"batch_size": BATCH, "n_units": len(val), "batches": [val[i:i + BATCH
           open(os.path.join(OUT, "validation.json"), "w", encoding="utf-8"), ensure_ascii=False)
 
 # ---- confirmatory, only after the lock (L4) ----
-locked = not (os.path.exists(LOCK_FILE) and "Approved by Sanjay:" in open(LOCK_FILE, encoding="utf-8").read())
+locked = not (os.path.exists(LOCK_FILE) and CLASSIFIER_LOCK_LINE in open(LOCK_FILE, encoding="utf-8").read())
 if not locked:
-    co = units(load_table("02_clean/packages", split="confirmatory"))
+    co = units(load_text_for_classifier("confirmatory"))   # text and keys only; outcomes stay locked (R15)
+    lock = open(LOCK_FILE, encoding="utf-8").read()
+    fp = hashlib.sha256(open(os.path.join(OUT, "prompt.json"), "rb").read()).hexdigest()
+    if fp not in lock:
+        sys.exit("prompt.json differs from the prompt frozen in LOCK.md; the classifier definitions may not change after the lock")
     json.dump(batches(co), open(os.path.join(OUT, "confirmatory.json"), "w", encoding="utf-8"), ensure_ascii=False)
     frames.append(co[keep])
 

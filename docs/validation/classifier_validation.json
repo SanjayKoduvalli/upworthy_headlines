@@ -1,0 +1,22 @@
+{
+ "default": {
+  "Gender agreement": "96%",
+  "Gender kappa": "0.94",
+  "Sentiment agreement": "71%",
+  "Sentiment kappa": "0.56",
+  "Positive vs. negative flips": "8%",
+  "Sanjay's topic among the tags": "80%",
+  "Tags per headline": "1.5",
+  "No topic (unclear)": "8%"
+ },
+ "quick": {
+  "Gender agreement": "93%",
+  "Gender kappa": "0.90",
+  "Sentiment agreement": "68%",
+  "Sentiment kappa": "0.51",
+  "Positive vs. negative flips": "6%",
+  "Sanjay's topic among the tags": "80%",
+  "Tags per headline": "1.2",
+  "No topic (unclear)": "7%"
+ }
+}
