@@ -107,6 +107,7 @@ a.dot:hover { background: var(--accent-soft); }
    the targeted column is tinted so the reader lands on it. */
 .matrix th[id] { scroll-margin-top: 200px; }
 .matrix:has(#matrix-olist:target) tr > :nth-child(2) { background: var(--accent-soft); }
+.matrix:has(#matrix-upworthy:target) tr > :nth-child(3) { background: var(--accent-soft); }
 .key { width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; display: inline-block; }
 .key.show { background: var(--accent); }
 .key.used { border: 2px solid var(--accent); }
