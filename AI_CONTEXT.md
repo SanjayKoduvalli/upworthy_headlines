@@ -21,7 +21,7 @@ AI-assisted analyses of public datasets by Sanjay Koduvalli (marketing analytics
 11. **Data split (R2):** develop on exploratory; lock definitions; run once on confirmatory for headline results; never touch holdout. Quality profiling may cover all splits; nothing comparing click rates by headline content touches confirmatory before definitions are locked.
 12. **Text features come from one fixed, validated method.** The plan was established packages (R3), but they can't be installed here; since Nov 10 the classifier is Claude with the fixed codebook-v2 prompt (R14), validated against Sanjay's 100 blind labels. Never change the prompt after the lock.
 13. **Python 3.11+** for this project.
-14. **Teach when asked:** Sanjay wants to understand the statistics (e.g. the chi-square lesson in NOTES §3.2). Explain both the math and the application before asking for approval of a statistical method.
+14. **Teach when asked, but keep it out of the logs:** Sanjay wants to understand the statistics. Explain both the math and the application before asking for approval of a statistical method. These explanations are for his own learning, not evidence of the project work, so don't record them in the AI log, the decision register or NOTES.
 
 ## 3. Stack
 Python 3.11+ with pandas, numpy, scipy (later statsmodels for regression; text tools per NOTES §5). Dashboard/output: ECharts HTML like Project 1, opening from disk, with the shared site header and `assets/site.css`. Hosting: GitHub Pages.

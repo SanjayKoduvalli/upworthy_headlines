@@ -81,7 +81,7 @@ Paper: Matias et al. (2021), *Scientific Data* 8, 195, https://doi.org/10.1038/s
 | P14 | Google Analytics files | Date coverage, missing values ("N/A"), number formats | 3 GA files |
 | P15 | Fields not analyzed | Distributions of `significance`, `first_place`, `winner`, `square`, `share_text` for the data dictionary | 3 splits |
 
-### 3.2 The chi-square check, explained (P10; taught to and approved by Sanjay 2026-11-04)
+### 3.2 The chi-square check, explained (P10; approved by Sanjay 2026-11-04)
 - **Question:** are the observed impressions per arm too far from an equal split to be luck? A large gap means randomization broke, and the test can't be used causally.
 - **Statistic:** χ² = Σ (O − E)² ÷ E, with E = test impressions ÷ arms. Squaring stops positive and negative gaps cancelling and weights big gaps; dividing by E scales each gap to what is normal at that size.
 - **p-value:** from the chi-square distribution with df = arms − 1: the chance of a χ² at least this large if assignment were fair.
@@ -249,7 +249,7 @@ Neither the AI workspace nor the shell on Sanjay's Mac can reach PyPI, GitHub fi
 |---|---|---|---|
 | 2026-11-04 | Dataset search | Proposed Hillstrom, Criteo, fast food; then searched for gender and marketing datasets; found no public voice-gender ad data; proposed Upworthy, the Kline–Rose–Walters audit and ACS | Rejected the first three; asked for gender-related data; chose Upworthy and the women-in-headlines angle |
 | 2026-11-04 | Step 0 | Read the archive site, the *Scientific Data* paper and the 2024 update; wrote the business context and caveats; flagged that subject gender rarely varies within a test | Approved; created the GitHub repo; downloaded the archive |
-| 2026-11-04 | Step 1–2 | Set up the project folder and checksums; found the files predate the 2024 flag; proposed profiling checks P1–P15 | Asked for a chi-square lesson (math and application) before approving; asked to find established text tools instead of our own word list; approved the data split, the checks and a newer Python |
+| 2026-11-04 | Step 1–2 | Set up the project folder and checksums; found the files predate the 2024 flag; proposed profiling checks P1–P15 | Asked to find established text tools instead of our own word list; approved the data split, the checks and a newer Python |
 | 2026-11-04 | Step 2 | Wrote the profile and an independent standard-library check; caught a timestamp-parsing bug; reproduced the authors' randomization finding; found A/A tests; wrote the data dictionary | Approved; added sentiment (3 classes) and topic variables with a gender × topic hypothesis (R7); pointed out readers never saw the opening paragraph (R8) |
 | 2026-11-04 | Steps 4–5 | Proposed load rules L1–L5 and cleaning rules S1–S12 with counts; built load, cleaning, 15 tests, an independent check, a generated cleaning log and the confirmatory lock; mutation-tested | Chose to sum duplicate versions for headline effects but keep them separate for the randomization check; chose code enforcement of the confirmatory lock |
 | 2026-11-09–10 | Hand labels | Built the gamified Labeler (blind; AI answer shown only after each answer), arrow-key navigation, sync script; computed agreement on the 100 labels | Labeled 100 headlines and judged it enough; accepted gender and sentiment; changed topics to multi-tag dummies (R12); merged LGBTQ+ into gender equality (R13) |
@@ -282,7 +282,7 @@ Neither the AI workspace nor the shell on Sanjay's Mac can reach PyPI, GitHub fi
 **Ruled out (quick diagnostics, exploratory):** the unseen lede differing (28% vs. 26% false positives); arms created at different times (94% within an hour); arm order (each arm's relative click rate 0.99–1.01 for the first six); uneven impressions (correlation with click rate 0.04); test size. `share_text` (social sharing text, not on the tile) differs in 315 of 326 tests, so it can't be tested.
 **Consequence:** a naive A/B test on this archive would overstate how often headline changes matter. Any test we use for the gender analysis must be calibrated to these A/A tests first. Calibration AA6 below (approved).
 
-**AA6, calibrate the test (approved by Sanjay 2026-11-10 23:33, after a walkthrough of quasi-binomial):**
+**AA6, calibrate the test (approved by Sanjay 2026-11-10 23:33):**
 - (a) *Recommended:* inflate the variance by the dispersion factor φ estimated from the A/A tests (pooled chi-square ÷ degrees of freedom = 1.96), the standard "quasi-binomial" correction, used in every later test and regression. Check: split the A/A tests in half at random, estimate φ on one half and measure the false-positive rate on the other, both ways. A preview gave 6.1% and 8.0%: close to 5% but a little over, because a few tests vary a lot more than the rest.
 - (b) *Robustness:* an empirical threshold, the 95th percentile of the A/A tests' chi-square ÷ degrees of freedom, which gives exactly 5% on A/A by construction. Reported alongside (a).
 
